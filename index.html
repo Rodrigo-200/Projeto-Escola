@@ -24,7 +24,7 @@
   }, 10000);
 
   function fetchDataAndUpdateUI() {
-    const jsonUrl = 'https://rodrigo-200.github.io/Projeto-Escola/data.json';
+    const jsonUrl = 'C:\Users\rodri\Downloads\Projeto-Escola\data.json';
 
     fetch(jsonUrl)
         .then(response => response.json())
@@ -32,6 +32,9 @@
             // Update your UI here
             document.getElementById('valor-temperatura-ar').textContent = data.temperatura_ar;
             document.getElementById('valor-humidade-ar').textContent = data.humidade_ar;
+            document.getElementById('valor-humidade-solo').textContent = data.humidade_solo;
+            document.getElementById('necessidade-rega').textContent = data.necessidade_rega;
+            document.getElementById('estado-da-conexão').textContent = data.estado_conexao;
             // ... update other fields ...
         })
         .catch(error => console.error('Error:', error));
