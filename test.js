@@ -1,5 +1,5 @@
-    console.log("Script loaded");
-
+alert('Script Loaded');
+alert("Script Loaded");
 document.addEventListener('DOMContentLoaded', () => {
   // Existing code...
 });
