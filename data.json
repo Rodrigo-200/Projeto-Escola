@@ -1,0 +1,7 @@
+{
+  "temperatura_ar": 0,
+  "humidade_ar": 0,
+  "humidade_solo": 0,
+  "necessidade_rega": "Não",
+  "estado_conexao": "Desconectado"
+}
