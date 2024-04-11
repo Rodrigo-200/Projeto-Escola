@@ -24,13 +24,13 @@ setInterval(() => {
 }, 100); // Adjust the interval as needed
 
   function fetchDataAndUpdateUI() {
-    console.log("Fetching data...");
+    alert("Fetching data...");
     const jsonUrl = 'https://rodrigo-200.github.io/Projeto-Escola/data.json';
 
     fetch(jsonUrl)
       .then(response => response.json())
       .then(data => {
-          console.log("Data received:", data); // Check what data is received
+          alert("Data received:", data); // Check what data is received
             // Update your UI here
             document.getElementById('valor-temperatura-ar').textContent = data.temperatura_ar;
             document.getElementById('valor-humidade-ar').textContent = data.humidade_ar;
@@ -40,8 +40,8 @@ setInterval(() => {
             // ... update other fields ...
         })
         .catch(error => {
-          console.error('Error:', error);
-          console.log("Could not fetch data");
+          alert('Error:', error);
+          alert("Could not fetch data");
         });
 }
 
