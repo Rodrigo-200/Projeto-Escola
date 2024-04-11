@@ -1,7 +1,7 @@
 {
-  "temperatura_ar": 0,
-  "humidade_ar": 0,
-  "humidade_solo": 0,
-  "necessidade_rega": "Não",
-  "estado_conexao": "Desconectado"
+    "temperatura_ar": 25.0,
+    "humidade_ar": 50.0,
+    "humidade_solo": 30.0,
+    "necessidade_rega": "N\u00e3o",
+    "estado_conexao": "Conectado"
 }
