@@ -28,27 +28,30 @@ setInterval(() => {
   fetchDataAndUpdateUI();
 }, 10000); // Adjust the interval as needed
 
-  function fetchDataAndUpdateUI() {
-    alert("Fetching data...");
-    const jsonUrl = 'https://rodrigo-200.github.io/Projeto-Escola/data.json';
+function fetchDataAndUpdateUI() {
+  console.log("Fetching data...");
+  const jsonUrl = 'https://rodrigo-200.github.io/Projeto-Escola/data.json';
 
-    fetch(jsonUrl)
-      .then(response => response.json())
-      .then(data => {
-          alert("Data received:", data); // Check what data is received
-            // Update your UI here
-            document.getElementById('valor-temperatura-ar').textContent = data.temperatura_ar;
-            document.getElementById('valor-humidade-ar').textContent = data.humidade_ar;
-            document.getElementById('valor-humidade-solo').textContent = data.humidade_solo;
-            document.getElementById('necessidade-rega').textContent = data.necessidade_rega;
-            document.getElementById('estado-da-conexão').textContent = data.estado_conexao;
-            // ... update other fields ...
-        })
-        .catch(error => {
-          alert('Error:', error);
-          alert("Could not fetch data");
-        });
+  fetch(jsonUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Data received:", data); // This should log the fetched data
+      document.getElementById('valor-temperatura-ar').textContent = data.temperatura_ar;
+      document.getElementById('valor-humidade-ar').textContent = data.humidade_ar;
+      document.getElementById('valor-humidade-solo').textContent = data.humidade_solo;
+      document.getElementById('necessidade-rega').textContent = data.necessidade_rega;
+      document.getElementById('estado-da-conexão').textContent = data.estado_conexao;
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
 }
+
 
     // Show loading dots with a delay
     document.addEventListener('DOMContentLoaded', () => {
