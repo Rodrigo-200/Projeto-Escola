@@ -19,16 +19,18 @@
 </div>
 
   <script>
-     setInterval(() => {
-    fetchDataAndUpdateUI();
-  }, 10000);
+setInterval(() => {
+  fetchDataAndUpdateUI();
+}, 100); // Adjust the interval as needed
 
   function fetchDataAndUpdateUI() {
+    console.log("Fetching data...");
     const jsonUrl = 'https://rodrigo-200.github.io/Projeto-Escola/data.json';
 
     fetch(jsonUrl)
-        .then(response => response.json())
-        .then(data => {
+      .then(response => response.json())
+      .then(data => {
+          console.log("Data received:", data); // Check what data is received
             // Update your UI here
             document.getElementById('valor-temperatura-ar').textContent = data.temperatura_ar;
             document.getElementById('valor-humidade-ar').textContent = data.humidade_ar;
@@ -37,7 +39,10 @@
             document.getElementById('estado-da-conexão').textContent = data.estado_conexao;
             // ... update other fields ...
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+          console.error('Error:', error);
+          console.log("Could not fetch data");
+        });
 }
 
     // Show loading dots with a delay
