@@ -24,17 +24,19 @@
   }, 10000);
 
   function fetchDataAndUpdateUI() {
-    // Replace `functionEndpoint` with the actual endpoint of your Netlify function
-    fetch('/.netlify/functions/updateData')
-      .then(response => response.json())
-      .then(data => {
-        // Update your UI here
-        document.getElementById('valor-temperatura-ar').textContent = data.temperatura_ar;
-        document.getElementById('valor-humidade-ar').textContent = data.humidade_ar;
-        // ... update other fields ...
-      })
-      .catch(error => console.error('Error:', error));
-  }
+    const jsonUrl = 'https://rodrigo-200.github.io/Projeto-Escola/data.json';
+
+    fetch(jsonUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Update your UI here
+            document.getElementById('valor-temperatura-ar').textContent = data.temperatura_ar;
+            document.getElementById('valor-humidade-ar').textContent = data.humidade_ar;
+            // ... update other fields ...
+        })
+        .catch(error => console.error('Error:', error));
+}
+
     // Show loading dots with a delay
     document.addEventListener('DOMContentLoaded', () => {
       const loadingContainer = document.getElementById('carregar');
