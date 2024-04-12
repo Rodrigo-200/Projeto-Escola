@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import json
 import git
 from threading import Timer
+import requests
 
 app = Flask(__name__)
 
@@ -16,14 +17,37 @@ default_data = {
     "necessidadwe_rega": "A carregar...",
     "estado2_conexao": "Desconectado"
 }
+def send_discord_message(title, description, color):
+    url = "https://discord.com/api/webhooks/946140740029906944/pmT7Tqmd8sq6qwiMgy8fSdwfmm4xQdgHNhX6Gt2Ex5SNRU-XR03lG5Gp_umxHfWLs3UR"
+    data = {
+        "content": "",
+        "embeds": [
+            {
+                "title": title,
+                "description": description,
+                "color": color  # Red color for 'offline'
+            }
+        ]
+    }
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(url, json=data, headers=headers)
+    print(f"Discord message sent: {response.status_code}")
+    
 
 # Timer setup
 timeout_duration = 70  # 70 seconds
 timeout_timer = None
 
+
+
 def update_json_on_timeout():
     with open(json_file_path, 'w') as json_file:
         json.dump(default_data, json_file, indent=4)
+        send_discord_message(
+                title="ESP Device Status Alert",
+                description=":red_circle: The device is **offline**.",
+                color=0xFF0000  # Red color
+            )
     commit_and_push_changes("Updated due to timeout")
 
 def reset_timeout_timer():
@@ -51,6 +75,7 @@ def update_data():
 
     commit_and_push_changes("Update sensor data")
     reset_timeout_timer()
+
 
     return jsonify({"message": "Data updated"}), 200
 
