@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>Monitoramento da planta</title>
+
 </head>
+
 
 <body>
   <div id="carregar" class="loading-dots"></div>
@@ -19,7 +21,51 @@
   <div id="conexão-esp">Status da <span class="palavras-a-azul">conexão</span>:  <span id="estado-da-conexão">Desconectado</span></div>
 </div>
 
-<script src="test.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Existing code...
+});
+setInterval(() => {
+  fetchDataAndUpdateUI();
+}, 10000); // Adjust the interval as needed
+
+function fetchDataAndUpdateUI() {
+    // URL to the JSON file in your GitHub repository
+    const jsonUrl = 'http://192.168.1.1:8000/data.json';
+
+    fetch(jsonUrl)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // Inspect the structure of 'data'
+    document.getElementById('valor-temperatura-ar').textContent = data.temperaturwa_ar;
+      document.getElementById('valor-humidade-ar').textContent = data.humidadwe_ar;
+      document.getElementById('valor-humidade-solo').textContent = data.humidadwe_solo;
+      document.getElementById('necessidade-rega').textContent = data.necessidadwe_rega;
+      document.getElementById('estado-da-conexão').textContent = data.estado2_conexao;
+    // ... rest of the code ...
+  })
+  .catch(error => console.error('Error:', error));
+}
+
+
+    // Show loading dots with a delay
+    document.addEventListener('DOMContentLoaded', () => {
+      const loadingContainer = document.getElementById('carregar');
+      loadingContainer.innerHTML = '<div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div>';
+
+      setTimeout(() => {
+        loadingContainer.style.display = 'none';
+        
+        const dataContainer = document.getElementById('data-container');
+        dataContainer.style.display = 'block';
+
+        const elementos_a_animar = document.querySelectorAll('.animação-inicial span');
+        elementos_a_animar.forEach(element => {
+          element.classList.add('animacao', 'fadeIn');
+        });
+      }, 2000); // Set the delay in milliseconds (2 seconds in this case)
+    });</script>
 
 </body>
 </html>
