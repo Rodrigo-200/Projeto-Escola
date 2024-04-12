@@ -16,10 +16,12 @@ def update_data():
 
     repo_dir = r'C:\Users\rodri\Downloads\Projeto-Escola'
     repo = git.Repo(repo_dir)
-    repo.git.add(json_file_path)
+    repo.git.add('data.json')
     repo.index.commit("Update sensor data")
     origin = repo.remote(name='origin')
     origin.push()
+
+    git_push()
 
     return 'Data updated', 200
 
