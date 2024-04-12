@@ -9,7 +9,7 @@ app = Flask(__name__)
 def update_data():
     data = request.json
     print("Received data:", data)
-    json_url = 'https://indigo-guttural-daphne.glitch.me/data.json'
+    json_url = 'https://indigo-guttural-daphne.glitch.me/webhook'
 
     # Fetch the current data
     response = requests.get(json_url)
@@ -26,7 +26,7 @@ def update_data():
     else:
         print("Failed to fetch the current data")
 
-    repo_dir = r'C:\\Users\\rodri\\Downloads\\Projeto-Escola'
+    repo_dir = r'C:\Users\rodri\Downloads\Projeto-Escola'
     repo = git.Repo(repo_dir)
     repo.git.add('.')
     repo.index.commit("Update sensor data")
