@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script>
-      const timer = 1000;
-  </script>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 setInterval(() => {
   fetchDataAndUpdateUI();
-}, 5000); // Adjust the interval as needed
+}, 10000); // Adjust the interval as needed
 
 function fetchDataAndUpdateUI() {
     // URL to the JSON file in your GitHub repository
@@ -69,9 +66,8 @@ function fetchDataAndUpdateUI() {
         elementos_a_animar.forEach(element => {
           element.classList.add('animacao', 'fadeIn');
         });
-      }, timer); // Set the delay in milliseconds (2 seconds in this case)
+      }, 2000); // Set the delay in milliseconds (2 seconds in this case)
     });
-    timer = 500;
     </script>
 
 </body>
