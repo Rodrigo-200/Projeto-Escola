@@ -37,18 +37,22 @@ function fetchDataAndUpdateUI() {
     // URL to the JSON file in your GitHub repository
     const jsonUrl = 'https://rodrigo-200.github.io/Projeto-Escola/data.json';
 
-    fetch(jsonUrl)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // Inspect the structure of 'data'
-    document.getElementById('valor-temperatura-ar').textContent = data.temperaturwa_ar;
-      document.getElementById('valor-humidade-ar').textContent = data.humidadwe_ar;
-      document.getElementById('valor-humidade-solo').textContent = data.humidadwe_solo;
-      document.getElementById('necessidade-rega').textContent = data.necessidadwe_rega;
-      document.getElementById('estado-da-conexão').textContent = data.estado2_conexao;
-    // ... rest of the code ...
-  })
-  .catch(error => console.error('Error:', error));
+    // Append a timestamp to the URL to prevent caching
+    const noCacheUrl = jsonUrl + '?t=' + new Date().getTime();
+
+    fetch(noCacheUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Inspect the structure of 'data'
+            // Update the UI elements with the new data
+            document.getElementById('valor-temperatura-ar').textContent = data.temperaturwa_ar;
+            document.getElementById('valor-humidade-ar').textContent = data.humidadwe_ar;
+            document.getElementById('valor-humidade-solo').textContent = data.humidadwe_solo;
+            document.getElementById('necessidade-rega').textContent = data.necessidadwe_rega;
+            document.getElementById('estado-da-conexão').textContent = data.estado2_conexao;
+            // ... rest of the code ...
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 
