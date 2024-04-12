@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script>
+      const timer = 1000;
+  </script>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>Monitoramento da planta</title>
+
 
 </head>
 
@@ -12,27 +16,28 @@
 <body>
   <div id="carregar" class="loading-dots"></div>
 
- <div id="data-container" class="initial-animation" style="display: none;">
-  <h1>Indicador de rega<br>inteligente</h1>
-  <div id="temperatura_ar">Temperatura do <span class="palavras-a-azul">ar</span>: <span id="valor-temperatura-ar">0</span> °C</div>
-  <div id="humidade_ar">Humidade do <span class="palavras-a-azul">ar</span>: <span id="valor-humidade-ar">0</span>%</div>
-  <div id="humidade_do_solo">Humidade do <span class="palavras-a-azul">solo</span>: <span id="valor-humidade-solo">0</span>%</div>
-  <div id="necessidade_rega">Necessidade de <span class="palavras-a-azul">rega</span>: <span id="necessidade-rega">Não</span></div>
-  <div id="conexão-esp">Status da <span class="palavras-a-azul">conexão</span>:  <span id="estado-da-conexão">Desconectado</span></div>
-</div>
+  <div id="data-container" class="initial-animation" style="display: none;">
+    <h1>Indicador de rega<br>inteligente</h1>
+    <div id="temperatura_ar">Temperatura do <span class="palavras-a-azul">ar</span>: <span id="valor-temperatura-ar">A carregar...</span> °C</div>
+    <div id="humidade_ar">Humidade do <span class="palavras-a-azul">ar</span>: <span id="valor-humidade-ar">A carregar...</span>%</div>
+    <div id="humidade_do_solo">Humidade do <span class="palavras-a-azul">solo</span>: <span id="valor-humidade-solo">A carregar...</span>%</div>
+    <div id="necessidade_rega">Necessidade de <span class="palavras-a-azul">rega</span>: <span id="necessidade-rega">A carregar...</span></div>
+    <div id="conexão-esp">Status da <span class="palavras-a-azul">conexão</span>:  <span id="estado-da-conexão">A carregar...</span></div>
+  </div>
 
 <script>
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // Existing code...
 });
 setInterval(() => {
   fetchDataAndUpdateUI();
-}, 10000); // Adjust the interval as needed
+}, 5000); // Adjust the interval as needed
 
 function fetchDataAndUpdateUI() {
     // URL to the JSON file in your GitHub repository
-    const jsonUrl = 'http://192.168.1.1:8000/data.json';
+    const jsonUrl = 'http://localhost:8000/data.json';
 
     fetch(jsonUrl)
   .then(response => response.json())
@@ -64,8 +69,10 @@ function fetchDataAndUpdateUI() {
         elementos_a_animar.forEach(element => {
           element.classList.add('animacao', 'fadeIn');
         });
-      }, 2000); // Set the delay in milliseconds (2 seconds in this case)
-    });</script>
+      }, timer); // Set the delay in milliseconds (2 seconds in this case)
+    });
+    timer = 500;
+    </script>
 
 </body>
 </html>
