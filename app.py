@@ -21,7 +21,6 @@ def update_data():
     origin = repo.remote(name='origin')
     origin.push()
 
-    git_push()
 
     return 'Data updated', 200
 
