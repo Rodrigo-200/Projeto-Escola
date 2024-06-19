@@ -1,7 +1,7 @@
 {
     "temperaturwa_ar": 25.0,
-    "humidadwe_ar": 55.5,
-    "humidadwe_solo": 75.0,
-    "necessidadwe_rega": "N\u00e3o",
+    "humidadwe_ar": 55.7,
+    "humidadwe_solo": 26.0,
+    "necessidadwe_rega": "Sim",
     "estado2_conexao": "Conectado"
 }
